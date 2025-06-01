@@ -1,8 +1,12 @@
+service: facecomparison-api
+
+frameworkVersion: '3'
+
 provider:
   name: aws
   runtime: java17
   region: us-east-1
-  apiName: ${self:service}-${self:custom.stage}
+  apiName: facecomparison-api-${opt:stage, 'dev'}
 
   iamRoleStatements:
     - Effect: Allow
@@ -10,15 +14,17 @@ provider:
         - rekognition:*
       Resource:
         - "*"
+
   environment:
-    stage: ${self:custom.stage}
+    stage: ${opt:stage, 'dev'}
     region: ${aws:region}
-    service: ${self:service}
+    service: facecomparison-api
+
 plugins:
   - serverless-manifest-plugin
 
 custom:
-  stage: ${sls:stage}
+  stage: ${opt:stage, 'dev'}
   product: youtube
 
 package:
@@ -27,9 +33,9 @@ package:
 functions:
   app:
     handler: io.github.lucasiferreira.facecomparison.config.StreamLambdaHandler
-    name: ${self:service}-${self:custom.stage}
+    name: facecomparison-api-${opt:stage, 'dev'}
     events:
       - http:
           cors: true
-          path: '/facecomparison/{proxy+}'
+          path: /facecomparison/{proxy+}
           method: any
