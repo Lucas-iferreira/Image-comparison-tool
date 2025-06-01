@@ -52,7 +52,7 @@ public class ComparisonService {
 
             List<CompareFacesMatch> faceDetails = compareFacesResult.faceMatches();
 
-            for (CompareFacesMatch match: faceDetails) {
+            for (CompareFacesMatch match : faceDetails) {
                 ComparedFace face = match.face();
                 BoundingBox position = face.boundingBox();
 

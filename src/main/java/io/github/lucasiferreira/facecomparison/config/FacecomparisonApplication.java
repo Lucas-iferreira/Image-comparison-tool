@@ -8,10 +8,10 @@ import software.amazon.awssdk.services.rekognition.RekognitionClient;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"io.github.lucasiferreira.facecomparison"})
-public class FacecomparisoApplication {
+public class FacecomparisonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FacecomparisoApplication.class, args);
+        SpringApplication.run(FacecomparisonApplication.class, args);
     }
 
     @Bean
